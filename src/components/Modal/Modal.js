@@ -1,6 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
+import { useEffect } from "react";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -11,14 +12,12 @@ export default function Modal({ children, onClose }) {
     }
   };
 
-  // useEffect(() => {
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // });
-
-  window.addEventListener("keydown", handleKeyDown);
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   const handleBackdropClick = (e) => {
     if (e.currentTarget === e.target) {

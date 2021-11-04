@@ -14,32 +14,11 @@ class App extends Component {
     showModal: false,
   };
 
-  //====================== retrieve from local storage ========================
-  // componentDidMount() {
-  //   const contacts = localStorage.getItem("contacts");
-  //   const parsedContacts = JSON.parse(contacts);
-
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  // }
-  //===================================================================
-
-  //====================== add to local storage ========================
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  //   }
-  // }
-  //===================================================================
-
-  //============ modal window ============================
   toggleModal = () => {
     this.setState((state) => ({
       showModal: !state.showModal,
     }));
   };
-  //======================================================
 
   render() {
     const { showModal } = this.state;
@@ -54,7 +33,7 @@ class App extends Component {
           <Modal onClose={this.toggleModal}>
             <div className="form-section">
               <div className="form">
-                <Form />
+                <Form onSave={this.toggleModal} />
               </div>
             </div>
           </Modal>
